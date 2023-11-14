@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airline Review Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <h1>Airline Review Prediction</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+        <label for="airline">Airline:</label>
+        <select name="airline" id="airline">
+            {% for airline in airlines %}
+                <option value="{{ airline }}">{{ airline }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="origin">Origin:</label>
+        <select name="origin" id="origin">
+            {% for origin in origins %}
+                <option value="{{ origin }}">{{ origin }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="destination">Destination:</label>
+        <select name="destination" id="destination">
+            {% for destination in destinations %}
+                <option value="{{ destination }}">{{ destination }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="month_flown">Month Flown:</label>
+        <select name="month_flown" id="month_flown">
+            {% for month in months %}
+                <option value="{{ month }}">{{ month }}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="overall_rating">Overall Rating:</label>
+        <select name="overall_rating" id="overall_rating" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select><br>
+        <label for="verified">Verified:</label>
+        <select name="verified" id="verified">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+
+        <label for="traveller_type">Type of Traveller:</label>
+        <select name="traveller_type" id="traveller_type">
+            <option value="Solo Leisure">Solo Leisure</option>
+            <option value="Couple Leisure">Couple Leisure</option>
+            <option value="Business">Business</option>
+            <option value="Family Leisure">Family Leisure</option>
+        </select><br>
+
+        <label for="seat_type">Seat Type:</label>
+        <select name="seat_type" id="seat_type" required>
+            <option value="Economy Class">Economy Class</option>
+            <option value="Business Class">Business Class</option>
+            <option value="Premium Economy">Premium Economy</option>
+            <option value="First Class">First Class</option>
+        </select><br>
+        
+        <label for="year_flown">Year Flown:</label>
+        <input type="text" id="year_flown" name="year_flown" required><br>
+
+        <label for="seat_comfort">Seat Comfort:</label>
+        <select name="seat_comfort" id="seat_comfort" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
+
+        <label for="cabin_service">Cabin Staff Service:</label>
+        <select name="cabin_service" id="cabin_service" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
+
+        <label for="food_beverages">Food & Beverages:</label>
+        <select name="food_beverages" id="food_beverages" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
+
+        <label for="ground_service">Ground Service:</label>
+        <select name="ground_service" id="ground_service" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select><br>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+    {% endif %}
+</body>
+</html>
